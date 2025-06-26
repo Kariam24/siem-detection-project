@@ -54,18 +54,6 @@ By ingesting and analyzing both **Sysmon logs** and **AWS CloudTrail logs**, thi
 
 ---
 
-## 🧪 How to Use
-
-1. Clone this repo or download the files.
-2. In Splunk:
-   - Create two indexes: `security_lab` (for Sysmon), `cloudtrail` (for AWS logs)
-   - Upload logs from the `/logs` folder
-   - Run queries provided in the Sigma rules or screenshots
-3. Create alerts using the visual reference in the `/alerts` folder.
-4. Tune and extend the detections for production usage.
-
----
-
 ## ✅ Learning Objectives
 
 - Learn how to detect real-world adversary behaviors
