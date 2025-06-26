@@ -1,0 +1,26 @@
+title: Excessive AWS Describe API Calls
+id: aws_describe_recon
+description: Detects multiple AWS Describe* API calls in a short time window, indicating possible reconnaissance activity.
+status: experimental
+author: Your Name
+date: 2025-06-25
+logsource:
+  product: aws
+  service: cloudtrail
+  category: web
+detection:
+  selection:
+    eventName|startswith: "Describe"
+  condition: selection
+fields:
+  - eventName
+  - userIdentity.userName
+  - sourceIPAddress
+  - awsRegion
+falsepositives:
+  - Legitimate admin activity querying resources
+level: medium
+tags:
+  - attack.discovery
+  - attack.t1087
+  - cloudtrail
