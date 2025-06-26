@@ -1,0 +1,33 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "ABCD1234EXAMPLE",
+        "arn": "arn:aws:iam::123456789012:user/test-user",
+        "accountId": "123456789012",
+        "userName": "test-user",
+        "sessionContext": {
+          "attributes": {
+            "creationDate": "2025-06-25T14:00:00Z",
+            "mfaAuthenticated": "false"
+          }
+        }
+      },
+      "eventTime": "2025-06-25T14:05:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeSubnets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "203.0.113.42",
+      "userAgent": "aws-cli/2.0.0",
+      "requestParameters": {},
+      "responseElements": null,
+      "requestID": "abcd1234-12ab-34cd-56ef-abcdef012345",
+      "eventID": "1234abcd-12ab-34cd-56ef-abcdef012345",
+      "eventType": "AwsApiCall",
+      "recipientAccountId": "123456789012",
+      "eventCategory": "Management"
+    }
+  ]
+}
