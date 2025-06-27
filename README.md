@@ -1,76 +1,55 @@
-# SIEM Detection Project
+📡 SIEM Detection Project
+This project demonstrates hands-on detection engineering using Splunk and Sigma rules to identify suspicious activity across Windows and AWS environments. It focuses on two key threat scenarios:
 
-This project showcases hands-on detection engineering using Splunk and Sigma rules to identify suspicious activity in enterprise environments. Specifically, it focuses on two threat scenarios:
+Obfuscated PowerShell Execution (T1059.001)
 
-1. **Obfuscated PowerShell Execution** on a Windows host
-2. **Reconnaissance via AWS CloudTrail Describe* API calls**
+AWS Reconnaissance via Describe API Calls (T1526, T1087)
 
-By ingesting and analyzing both **Sysmon logs** and **AWS CloudTrail logs**, this project demonstrates how to create, map, and operationalize detections using MITRE ATT&CK and real-time Splunk alerts.
+By ingesting and analyzing Sysmon and AWS CloudTrail logs, I created actionable detections mapped to MITRE ATT&CK and deployed real-time alerts in Splunk.
 
----
+📁 Folder Structure & Detection Rules
+🔹 Detection 1: Obfuscated PowerShell (MITRE T1059.001)
+Log Source: Sysmon
 
-## 📁 Folder Structure
+Technique: PowerShell Scripting (Encoded Commands)
+
+Detection Logic: Flags usage of -enc, -EncodedCommand, or Base64 strings in command-line input.
+
+Rule File: powershell_encoded_command.yml
+
+✅ Includes screenshot of triggered Splunk alert
+
+🔹 Detection 2: AWS API Reconnaissance (MITRE T1526, T1087)
+Log Source: AWS CloudTrail
+
+Technique: Cloud Service Discovery
+
+Detection Logic: Detects excessive Describe* API activity in a short time window.
+
+Rule File: aws_describe_recon.yml
+
+✅ Includes Splunk alert and example CloudTrail logs
+
+🛠 Tools Used
+Splunk Enterprise (local): Data ingestion, alerting
+
+Sigma: YAML-based detection rules
+
+MITRE ATT&CK: Threat technique mapping
+
+Visual Studio Code: Log formatting/redaction
+
+🎯 Learning Objectives
+Detect adversary behaviors across Windows and AWS
+
+Map detection logic to MITRE ATT&CK techniques
+
+Write Sigma rules from real-world logs
+
+Practice Splunk alerting and false positive tuning
+
+👤 Author
+Kariam Rodriguez
+Aspiring cybersecurity engineer with interests in threat detection, SIEM, and security automation.
 
 
----
-
-## 📌 Detection 1: Obfuscated PowerShell (MITRE T1059.001)
-
-**Log Source**: Sysmon  
-**Technique**: Command and Scripting Interpreter: PowerShell  
-**Data**: `CommandLine` field with encoded content  
-**Detection Logic**: Looks for use of `-enc`, `-EncodedCommand`, or embedded base64 strings in PowerShell command line.
-
-**Mapped to**: [T1059.001](https://attack.mitre.org/techniques/T1059/001/) – PowerShell  
-**Detection Rule**: [`powershell_encoded_command.yml`](detections/powershell_encoded_command.yml)
-
-✅ Also includes a Splunk alert screenshot for triggering on detection.
-
----
-
-## 📌 Detection 2: AWS API Reconnaissance (MITRE T1526)
-
-**Log Source**: AWS CloudTrail  
-**Technique**: Cloud Service Discovery  
-**Data**: `eventName` values like `DescribeSubnets`, `DescribeSecurityGroups`, etc.  
-**Detection Logic**: Flags excessive use of `Describe*` API calls in a short time period.
-
-**Mapped to**:
-- [T1526](https://attack.mitre.org/techniques/T1526/) – Cloud Service Discovery
-- [T1087](https://attack.mitre.org/techniques/T1087/) – Account Discovery
-
-**Detection Rule**: [`aws_describe_recon.yml`](detections/aws_describe_recon.yml)
-
-✅ Includes alert logic screenshot and CloudTrail event samples.
-
----
-
-## ⚙️ Tools Used
-
-- **Splunk Enterprise (local)** – Data ingestion, search, alerting
-- **Sigma** – Detection rule creation in YAML
-- **MITRE ATT&CK** – Threat technique mapping
-- **Visual Studio Code** – Log editing and redaction
-
----
-
-## ✅ Learning Objectives
-
-- Learn how to detect real-world adversary behaviors
-- Practice mapping to the MITRE ATT&CK framework
-- Develop alerting logic in Splunk
-- Work with structured log data (JSON, Sysmon XML)
-- Understand Sigma rule syntax and purpose
-
----
-
-## 📢 Author
-
-**Kariam Rodriguez**  
-Aspiring cybersecurity engineer passionate about detection engineering, threat hunting, and security automation.
-
----
-
-## 📄 License
-
-MIT License – feel free to fork and build on this project.
