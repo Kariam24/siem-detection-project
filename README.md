@@ -16,14 +16,12 @@ By ingesting and analyzing **Sysmon** and **AWS CloudTrail** logs, I created act
 - **Technique:** PowerShell Scripting (Encoded Commands)  
 - **Detection Logic:** Flags usage of `-enc`, `-EncodedCommand`, or embedded Base64 strings in PowerShell command-line input  
 - **Rule File:** `powershell_encoded_command.yml`  
-- ✅ Includes screenshot of triggered Splunk alert
 
 ### 🔹 Detection 2: AWS API Reconnaissance (MITRE T1526, T1087)
 - **Log Source:** AWS CloudTrail  
 - **Technique:** Cloud Service & Account Discovery  
 - **Detection Logic:** Detects excessive `Describe*` API calls in a short time window  
 - **Rule File:** `aws_describe_recon.yml`  
-- ✅ Includes Splunk alert logic and CloudTrail event samples
 
 ---
 
